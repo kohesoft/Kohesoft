@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.kohesoft.com/sitemap.xml
+
+# Önemli sayfalar
+Allow: /
+Allow: /services
+Allow: /about
+Allow: /contact
+Allow: /en
+
+# Statik dosyalar
+Allow: /images/
+Allow: /favicon.svg
+Allow: /manifest.json
+
+# Güvenlik
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Crawl-delay
+Crawl-delay: 1

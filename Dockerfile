@@ -8,8 +8,9 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
-COPY package.json package-lock.json* ./
-RUN npm ci --only=production
+COPY package.json ./
+# Check if package-lock.json exists, if not generate it
+RUN npm install --only=production
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -21,6 +22,9 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
+
+# Install all dependencies for build (including devDependencies)
+RUN npm install
 
 # Build the application
 RUN npm run build
